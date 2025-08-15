@@ -9,7 +9,7 @@ class App:
         MAIN_FRAME = Frame(master=MASTER, fg_color="#071F33")
         MAIN_FRAME.grid(row=1, column=0, columnspan=3, sticky="nsew")
 
-        logo= CTkLabel(HEADER_FRAME, text="Organizador de Arquivos")
+        logo= CTkLabel(HEADER_FRAME, text="SaveFolder - Organizador de Arquivos")
         logo.grid(row=1, column=0, columnspan=3, padx= 15, pady=15)
         
         btn_select_folder = Button(HEADER_FRAME,'Selecionar Pasta', FOLDER_ICON, command= self.select_folder)

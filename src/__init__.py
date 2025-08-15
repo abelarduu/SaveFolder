@@ -7,4 +7,4 @@ from pathlib import Path
 from customtkinter import *
 import pyzipper
 
-MASTER= Window(750, 500, "Organizador de Arquivos", True)
+MASTER= Window(750, 500, "SaveFolder - Organizador de Arquivos", True)

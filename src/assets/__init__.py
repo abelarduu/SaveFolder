@@ -3,11 +3,9 @@ from customtkinter import CTkImage
 from PIL import Image
 
 ASSETS_PATH = Path(__file__).parent
-print(ASSETS_PATH)
 
 def create_image(image_path):
     """Carrega e redimensiona uma imagem para uso com CTkImage."""
-    print(image_path)
     img = Image.open(image_path)
     if img.size > (90, 90):
         size = (img.size[0] // 10, img.size[1] // 10)
