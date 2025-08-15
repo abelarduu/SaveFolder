@@ -8,6 +8,18 @@ class App:
 
         MAIN_FRAME = Frame(master=MASTER, fg_color="#071F33")
         MAIN_FRAME.grid(row=1, column=0, columnspan=3, sticky="nsew")
+
+        logo= CTkLabel(HEADER_FRAME, text="Organizador de Arquivos")
+        logo.grid(row=1, column=0, columnspan=3, padx= 15, pady=15)
+        
+        btn_select_folder = Button(HEADER_FRAME,'Selecionar Pasta',command= self.select_folder)
+        btn_select_folder.grid(row=2, column=0, padx= 15, pady=15, sticky="nsew")
+        
+        btn_organize_folder = Button(HEADER_FRAME,'Organizar Pasta',command= self.organize_folder)
+        btn_organize_folder.grid(row=2, column=1, padx= 15, pady=15, sticky="nsew")
+
+        btn_zip_folder = Button(HEADER_FRAME,'Compactar Pasta',command= self.create_zip)
+        btn_zip_folder.grid(row=2, column=2, padx= 15, pady=15, sticky="nsew")
         
     def select_folder(self):
         """."""
