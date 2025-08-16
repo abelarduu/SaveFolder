@@ -3,27 +3,37 @@ from src import *
 class App:
     def __init__(self):
         """Inicializa a aplicação e define suas variaveis."""
-        HEADER_FRAME = Frame(master=MASTER, fg_color="#158af0")
-        HEADER_FRAME.grid(row=0, column=0, columnspan=3, sticky="nsew")
+        self.HEADER_FRAME = Frame(master=MASTER, fg_color="#158af0")
+        self.HEADER_FRAME.grid(row=0, column=0, columnspan=3, sticky="nsew")
 
-        MAIN_FRAME = Frame(master=MASTER, fg_color="#071F33")
-        MAIN_FRAME.grid(row=1, column=0, columnspan=3, sticky="nsew")
+        self.MAIN_FRAME = Frame(master=MASTER, fg_color="#071F33")
+        self.MAIN_FRAME.grid(row=1, column=0, columnspan=3, sticky="nsew")
 
-        logo= CTkLabel(HEADER_FRAME, text="SaveFolder - Organizador de Arquivos")
-        logo.grid(row=1, column=0, columnspan=3, padx= 15, pady=15)
+        self.logo= CTkLabel(self.HEADER_FRAME, text="SaveFolder - Organizador de Arquivos")
+        self.logo.grid(row=1, column=0, columnspan=3, padx= 15, pady=15)
         
-        btn_select_folder = Button(HEADER_FRAME,'Selecionar Pasta', FOLDER_ICON, command= self.select_folder)
-        btn_select_folder.grid(row=2, column=0, padx= 15, pady=15, sticky="nsew")
+        self.btn_select_folder = Button(self.HEADER_FRAME,'Selecionar Pasta', FOLDER_ICON, command= self.select_folder)
+        self.btn_select_folder.grid(row=2, column=0, padx= 15, pady=15, sticky="nsew")
+        self.btn_select_folder.toggle_state()
         
-        btn_organize_folder = Button(HEADER_FRAME,'Organizar Pasta', FOLDER_ICON, command= self.organize_folder)
-        btn_organize_folder.grid(row=2, column=1, padx= 15, pady=15, sticky="nsew")
+        self.btn_organize_folder = Button(self.HEADER_FRAME,'Organizar Pasta', FOLDER_ICON,command= self.organize_folder)
+        self.btn_organize_folder.grid(row=2, column=1, padx= 15, pady=15,  sticky="nsew")
 
-        btn_zip_folder = Button(HEADER_FRAME,'Compactar Pasta', ZIP_FOLDER_ICON, command= self.create_zip)
-        btn_zip_folder.grid(row=2, column=2, padx= 15, pady=15, sticky="nsew")
+
+        self.btn_zip_folder = Button(self.HEADER_FRAME,'Compactar Pasta', ZIP_FOLDER_ICON, command= self.create_zip)
+        self.btn_zip_folder.grid(row=2, column=2, padx= 15, pady=15, sticky="nsew")
+
+        self.selected_folder = None
         
     def select_folder(self):
-        """."""
-        print("selecione a pasta")
+        """Seleciona uma pasta e atualiza a aplicação com as imagens dessa pasta."""
+        folder = askdirectory()
+        if Path(folder).is_dir():
+            self.selected_folder = Path(folder)
+        MASTER.after(10, self.render_folder)
+
+    def render_folder(self):
+        self.refresh_buttons()
 
     def organize_folder(self):
         """."""
@@ -34,9 +44,17 @@ class App:
         print("compactando a pasta")
 
     def add_zip_password(self):
-        """Adiciona senha n"""
+        """Adiciona senha no arquivo compactado"""
         pass
     
+    def refresh_buttons(self):
+        if self.selected_folder is not None:
+            self.btn_select_folder.toggle_state()
+            self.btn_organize_folder.toggle_state()
+            self.btn_zip_folder.toggle_state()
+        else:
+            self.btn_select_folder.toggle_state()
+        
     def run(self):
         """Inicia a aplicação e mantém a interface em execução."""
         MASTER.mainloop()
