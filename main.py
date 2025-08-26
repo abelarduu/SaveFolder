@@ -3,7 +3,7 @@ from src import *
 class App:
     def __init__(self):
         """Inicializa a aplicação e define suas variaveis."""
-        self.HEADER_FRAME = Frame(master=MASTER, fg_color="#158af0")
+        self.HEADER_FRAME = Frame(master=MASTER, fg_color="#056CF2")
         self.HEADER_FRAME.grid(row=0, column=0, columnspan=3, sticky="nsew")
 
         self.MAIN_FRAME = Frame(master=MASTER, fg_color="#071F33")
@@ -19,11 +19,11 @@ class App:
         self.btn_organize_folder = Button(self.HEADER_FRAME,'Organizar Pasta', FOLDER_ICON,command= self.organize_folder)
         self.btn_organize_folder.grid(row=2, column=1, padx= 15, pady=15,  sticky="nsew")
 
-
         self.btn_zip_folder = Button(self.HEADER_FRAME,'Compactar Pasta', ZIP_FOLDER_ICON, command= self.create_zip)
         self.btn_zip_folder.grid(row=2, column=2, padx= 15, pady=15, sticky="nsew")
 
-        self.selected_folder = None
+        self.selected_folder : Path
+        self.list_files= []
         
     def select_folder(self):
         """Seleciona uma pasta e atualiza a aplicação com as imagens dessa pasta."""
@@ -32,8 +32,20 @@ class App:
             self.selected_folder = Path(folder)
         MASTER.after(10, self.render_folder)
 
+    def get_list_files(self):
+        """Obtem e retorna uma lista de todos os itens dentro do diretório selecionado."""
+        for file in self.selected_folder.glob("*"):
+            self.list_files.append(file)
+
     def render_folder(self):
         self.refresh_buttons()
+        self.get_list_files()
+
+        for file in self.list_files:
+            label= CTkLabel(self.MAIN_FRAME, text=str(file))
+            label.grid(row=0, column= 0, rowspan=3, columnspan=3)
+
+        print(self.list_files)
 
     def organize_folder(self):
         """."""
