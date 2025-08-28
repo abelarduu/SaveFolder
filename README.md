@@ -5,7 +5,7 @@ O **SaveFolder** é um organizador automático de arquivos que classifica arquiv
 
 Ele auxilia evitando perda de dados, arquivos duplicados, desperdício de tempo e armazenamento desorganizado, garantindo uma **organização sistemática, categorização inteligente, armazenamento otimizado e rápida recuperação das informações**. Dessa forma, reduz o trabalho manual e a ocorrência de erros, além de assegurar que os arquivos estejam sempre disponíveis quando necessário.  
 
-Com uma interface simples e intuitiva, o **SaveFolder** foi pensado para facilitar o trabalho de qualquer usuário que precise manter seus arquivos organizados e protegidos, sem depender de processos manuais demorados. A solução combina eficiência, segurança e usabilidade em um único aplicativo desenvolvido em **Python** com **Pathlib**, **CustomTkinter** e **Pillow**.
+Com uma interface simples e intuitiva, o **SaveFolder** foi pensado para facilitar o trabalho de qualquer usuário que precise manter seus arquivos organizados e protegidos, sem depender de processos manuais demorados. A solução combina eficiência, segurança e usabilidade em um único aplicativo desenvolvido em **Python** com **Pathlib**, **CustomTkinter**, **Pyzipper** e **Pillow**.
  
 
 [!["Python V.3.13.6"](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
