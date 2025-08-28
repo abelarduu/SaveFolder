@@ -1,11 +1,11 @@
 from customtkinter import CTk, set_appearance_mode
 
 class Window(CTk):
-    def __init__(self, w: int, h: int, title: str, resizable: bool):
+    def __init__(self, width: int, height: int, title: str, resizable: bool):
         """Inicializa uma janela personalizada com largura, altura, título e redimensionamento."""
         super().__init__()
         self.title(title)
-        self.minsize(w, h)
+        self.minsize(width, height)
         self.resizable(resizable, resizable)
         set_appearance_mode("dark")
         

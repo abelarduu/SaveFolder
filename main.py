@@ -3,24 +3,59 @@ from src import *
 class App:
     def __init__(self):
         """Inicializa a aplicação e define suas variaveis."""
-        self.HEADER_FRAME = Frame(master=MASTER, fg_color="#056CF2")
-        self.HEADER_FRAME.grid(row=0, column=0, columnspan=3, sticky="nsew")
 
-        self.MAIN_FRAME = Frame(master=MASTER, fg_color="#071F33")
-        self.MAIN_FRAME.grid(row=1, column=0, columnspan=3, sticky="nsew")
+        self.HEADER_FRAME = Frame(master=MASTER,
+                                  fg_color="#056CF2")
+        self.HEADER_FRAME.grid(row=0,
+                               column=0,
+                               columnspan=3,
+                               sticky="nsew")
 
-        self.logo= CTkLabel(self.HEADER_FRAME, text="SaveFolder - Organizador de Arquivos")
-        self.logo.grid(row=1, column=0, columnspan=3, padx= 15, pady=15)
+        self.MAIN_FRAME = Frame(master=MASTER,
+                                fg_color="#071F33")
+        self.MAIN_FRAME.grid(row=1,
+                             column=0,
+                             columnspan=3,
+                             sticky="nsew")
+
+        self.logo= CTkLabel(self.HEADER_FRAME,
+                            text="SaveFolder - Organizador de Arquivos")
+        self.logo.grid(row=1,
+                       column=0,
+                       columnspan=3,
+                       padx= 15,
+                       pady=15)
         
-        self.btn_select_folder = Button(self.HEADER_FRAME,'Selecionar Pasta', FOLDER_ICON, command= self.select_folder)
-        self.btn_select_folder.grid(row=2, column=0, padx= 15, pady=15, sticky="nsew")
+        self.btn_select_folder = Button(self.HEADER_FRAME,
+                                        'Selecionar Pasta',
+                                        FOLDER_ICON,
+                                        command= self.select_folder)
+        self.btn_select_folder.grid(row=2,
+                                    column=0,
+                                    padx= 15,
+                                    pady=15,
+                                    sticky="nsew")
         self.btn_select_folder.toggle_state()
         
-        self.btn_organize_folder = Button(self.HEADER_FRAME,'Organizar Pasta', FOLDER_ICON,command= self.organize_folder)
-        self.btn_organize_folder.grid(row=2, column=1, padx= 15, pady=15,  sticky="nsew")
+        self.btn_organize_folder = Button(self.HEADER_FRAME,
+                                          'Organizar Pasta',
+                                          FOLDER_ICON,
+                                          command= self.organize_folder)
+        self.btn_organize_folder.grid(row=2,
+                                      column=1,
+                                      padx= 15,
+                                      pady=15,
+                                      sticky="nsew")
 
-        self.btn_zip_folder = Button(self.HEADER_FRAME,'Compactar Pasta', ZIP_FOLDER_ICON, command= self.create_zip)
-        self.btn_zip_folder.grid(row=2, column=2, padx= 15, pady=15, sticky="nsew")
+        self.btn_zip_folder = Button(self.HEADER_FRAME,
+                                     'Compactar Pasta',
+                                     ZIP_FOLDER_ICON,
+                                     command= self.create_zip)
+        self.btn_zip_folder.grid(row=2,
+                                 column=2,
+                                 padx= 15,
+                                 pady=15,
+                                 sticky="nsew")
 
         self.selected_folder : Path
         self.list_files= []
@@ -41,9 +76,17 @@ class App:
         self.refresh_buttons()
         self.get_list_files()
 
-        for file in self.list_files:
-            label= CTkLabel(self.MAIN_FRAME, text=str(file))
-            label.grid(row=0, column= 0, rowspan=3, columnspan=3)
+        for index, file in enumerate(self.list_files):
+            label= CTkLabel(self.MAIN_FRAME,
+                            text=str(file),
+                            fg_color="#2f4a59",
+                            corner_radius= 25,
+                            font=("Arial", 15))
+            label.grid(row= index,
+                       column= 0,
+                       columnspan=3,
+                       pady=15,
+                       sticky="ns")    
 
         print(self.list_files)
 

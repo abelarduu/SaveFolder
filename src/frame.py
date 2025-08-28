@@ -5,5 +5,4 @@ class Frame(CTkFrame):
         super().__init__(master, **kwargs)
 
         # Configura o gerenciamento de layout para expansão
-        self.columnconfigure(1, weight=3) 
-        self.rowconfigure(1, weight=3)
+        self.columnconfigure(1, weight=3)

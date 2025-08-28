@@ -8,4 +8,7 @@ from customtkinter import *
 from tkinter.filedialog import askdirectory
 import pyzipper
 
-MASTER= Window(750, 500, "SaveFolder - Organizador de Arquivos", True)
+MASTER= Window(width=750,
+               height=500,
+               title="SaveFolder - Organizador de Arquivos",
+               resizable=True)
