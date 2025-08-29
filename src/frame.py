@@ -1,8 +1,11 @@
-from customtkinter import CTkFrame
+from customtkinter import CTkFrame, CTkScrollableFrame
 
-class Frame(CTkFrame):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+class Frame:
+    def __new__(cls, master, scroll= False, **kwargs):
+        if scroll:
+            widget = CTkScrollableFrame(master, **kwargs)
+        else:
+            widget = CTkFrame(master, **kwargs)
+        widget.columnconfigure(1, weight=3)
 
-        # Configura o gerenciamento de layout para expansão
-        self.columnconfigure(1, weight=3)
+        return widget

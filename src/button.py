@@ -1,7 +1,7 @@
 from customtkinter import CTkButton
 
 class Button(CTkButton):
-    def __init__(self, master, txt, img, **kwargs):
+    def __init__(self, master, txt: str, img: str, **kwargs):
         super().__init__(master,
                          text=txt,
                          image= img,

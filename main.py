@@ -3,7 +3,6 @@ from src import *
 class App:
     def __init__(self):
         """Inicializa a aplicação e define suas variaveis."""
-
         self.HEADER_FRAME = Frame(master=MASTER,
                                   fg_color="#056CF2")
         self.HEADER_FRAME.grid(row=0,
@@ -12,6 +11,7 @@ class App:
                                sticky="nsew")
 
         self.MAIN_FRAME = Frame(master=MASTER,
+                                scroll= True,
                                 fg_color="#071F33")
         self.MAIN_FRAME.grid(row=1,
                              column=0,
