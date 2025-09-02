@@ -12,7 +12,12 @@ def create_image(image_path):
     else:
         size = img.size
     return CTkImage(light_image=img, size=size)
- 
+
 #IMGs
 FOLDER_ICON = create_image(ASSETS_PATH / "images/folder-icon.png")
 ZIP_FOLDER_ICON = create_image(ASSETS_PATH / "images/zip-folder-icon.png")
+
+#Icon files
+TXT_FILE_ICON = create_image(ASSETS_PATH / "images/txt_icon.png")
+DOCX_FILE_ICON = create_image(ASSETS_PATH / "images/docx_icon.png")
+PDF_FILE_ICON = create_image(ASSETS_PATH / "images/pdf_icon.png")

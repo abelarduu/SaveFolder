@@ -78,8 +78,10 @@ class App:
 
         for index, file in enumerate(self.list_files):
             label= CTkLabel(self.MAIN_FRAME,
-                            text=str(file),
+                            text= " " + str(file),
+                            image= TXT_FILE_ICON,
                             fg_color="#2f4a59",
+                            compound= "left",
                             corner_radius= 25,
                             font=("Arial", 15))
             label.grid(row= index,
