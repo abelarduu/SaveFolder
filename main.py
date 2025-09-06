@@ -61,50 +61,64 @@ class App:
         self.list_files= []
         
     def select_folder(self):
-        """Seleciona uma pasta e atualiza a aplicação com as imagens dessa pasta."""
+        """Abre o seletor de pastas e define a pasta escolhida."""
         folder = askdirectory()
         if Path(folder).is_dir():
             self.selected_folder = Path(folder)
         MASTER.after(10, self.render_folder)
 
     def get_list_files(self):
-        """Obtem e retorna uma lista de todos os itens dentro do diretório selecionado."""
+        """Carrega os arquivos do diretório selecionado na lista."""
         for file in self.selected_folder.glob("*"):
             self.list_files.append(file)
 
+    def set_file_icon(self, label, file):
+        """Define o ícone do label de acordo com a extensão do arquivo."""
+        if (".docx" in Path(file).suffix or
+            ".odt" in Path(file).suffix):
+            label.configure(image= DOCX_FILE_ICON)
+
+        elif ".pdf" in Path(file).suffix:
+            label.configure(image= PDF_FILE_ICON)
+        
+        else:
+            label.configure(image= TXT_FILE_ICON)
+        
     def render_folder(self):
+        """Renderiza os arquivos da pasta selecionada no frame principal."""
         self.refresh_buttons()
         self.get_list_files()
 
         for index, file in enumerate(self.list_files):
             label= CTkLabel(self.MAIN_FRAME,
                             text= " " + str(file),
-                            image= TXT_FILE_ICON,
-                            fg_color="#2f4a59",
                             compound= "left",
+                            fg_color="#2f4a59",
                             corner_radius= 25,
                             font=("Arial", 15))
+            
+            self.set_file_icon(label, file)
+
             label.grid(row= index,
                        column= 0,
                        columnspan=3,
                        pady=15,
                        sticky="ns")    
 
-        print(self.list_files)
-
     def organize_folder(self):
-        """."""
+        """Organiza os arquivos da pasta selecionada."""
         print("organizando a pasta")
 
     def create_zip(self):
-        """Gera um arquivo .rar da pasta Compactada."""
+        """Compacta a pasta selecionada em um arquivo zip."""
         print("compactando a pasta")
 
     def add_zip_password(self):
-        """Adiciona senha no arquivo compactado"""
+        """Adiciona uma senha ao arquivo compactado."""
         pass
     
     def refresh_buttons(self):
+        """Atualiza o estado dos botões de ação."""
         if self.selected_folder is not None:
             self.btn_select_folder.toggle_state()
             self.btn_organize_folder.toggle_state()
@@ -113,7 +127,7 @@ class App:
             self.btn_select_folder.toggle_state()
         
     def run(self):
-        """Inicia a aplicação e mantém a interface em execução."""
+        """Inicia o loop principal da aplicação."""
         MASTER.mainloop()
 
 if __name__ == "__main__":
