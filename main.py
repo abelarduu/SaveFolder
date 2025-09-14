@@ -83,7 +83,7 @@ class App:
         
         else:
             label.configure(image= TXT_FILE_ICON)
-        
+            
     def render_folder(self):
         """Renderiza os arquivos da pasta selecionada no frame principal."""
         self.refresh_buttons()
@@ -103,11 +103,20 @@ class App:
                        column= 0,
                        columnspan=3,
                        pady=15,
-                       sticky="ns")    
+                       sticky="ns")
 
     def organize_folder(self):
         """Organiza os arquivos da pasta selecionada."""
-        print("organizando a pasta")
+        if not self.list_files is None:
+            for file in self.list_files:
+
+                #Criação de pastas
+                new_dir = file.parent / Path(file.suffix[1:])
+                new_dir.mkdir(exist_ok=True)
+                
+                #Move o arquivo
+                new_path = new_dir / file.name 
+                file.replace(new_path)
 
     def create_zip(self):
         """Compacta a pasta selecionada em um arquivo zip."""
