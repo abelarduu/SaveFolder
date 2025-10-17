@@ -115,17 +115,27 @@ class App:
                 new_dir.mkdir(exist_ok=True)
                 
                 #Move o arquivo
-                new_path = new_dir / file.name 
+                new_path = new_dir / self.selected_folder.name 
                 file.replace(new_path)
 
     def create_zip(self):
         """Compacta a pasta selecionada em um arquivo zip."""
-        print("compactando a pasta")
 
-    def add_zip_password(self):
+        secret_password = b'admin123'
+        #Criptografa a pasta no arquivo .ZIP
+        with pyzipper.AESZipFile(f'{self.selected_folder}.zip',
+                            'w',
+                            compression=pyzipper.ZIP_LZMA,
+                            encryption=pyzipper.WZ_AES) as zf:
+            
+            zf.setpassword(secret_password)
+            # Adiciona a pasta no arquivo .ZIP
+            zf.write(self.selected_folder)
+
+    def add_zip_password(self, secret_password):
         """Adiciona uma senha ao arquivo compactado."""
         pass
-    
+
     def refresh_buttons(self):
         """Atualiza o estado dos botões de ação."""
         if self.selected_folder is not None:
