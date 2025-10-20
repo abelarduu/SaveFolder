@@ -119,22 +119,29 @@ class App:
                 file.replace(new_path)
 
     def create_zip(self):
-        """Compacta a pasta selecionada em um arquivo zip."""
-
+        """Compacta a pasta selecionada em um arquivo .zip com criptografia AES."""
         secret_password = b'admin123'
-        #Criptografa a pasta no arquivo .ZIP
-        with pyzipper.AESZipFile(f'{self.selected_folder}.zip',
-                            'w',
-                            compression=pyzipper.ZIP_LZMA,
-                            encryption=pyzipper.WZ_AES) as zf:
-            
-            zf.setpassword(secret_password)
-            # Adiciona a pasta no arquivo .ZIP
-            zf.write(self.selected_folder)
 
-    def add_zip_password(self, secret_password):
-        """Adiciona uma senha ao arquivo compactado."""
-        pass
+        # Cria o arquivo ZIP criptografado com AES e compressão LZMA
+        with pyzipper.AESZipFile(
+            f'{self.selected_folder.name}.zip',
+            'w',
+            compression=pyzipper.ZIP_LZMA,
+            encryption=pyzipper.WZ_AES
+        ) as zf:
+            
+            # Define a senha para o arquivo compactado com criptografia AES 
+            zf.setpassword(secret_password)
+
+            # Define o nome base da pasta dentro do arquivo ZIP
+            base_folder = self.selected_folder.name
+
+            # Percorre todos os arquivos dentro da pasta selecionada
+            # e adiciona cada arquivo ao arquivo ZIP
+            for file_path in self.selected_folder.rglob('*'):
+                if file_path.is_file():
+                    arcname = Path(base_folder) / file_path.relative_to(self.selected_folder)
+                    zf.write(file_path, arcname)
 
     def refresh_buttons(self):
         """Atualiza o estado dos botões de ação."""
