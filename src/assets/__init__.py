@@ -8,7 +8,7 @@ def create_image(image_path):
     """Carrega e redimensiona uma imagem para uso com CTkImage."""
     img = Image.open(image_path)
     if img.size > (90, 90):
-        size = (img.size[0] // 10, img.size[1] // 10)
+        size = (img.size[0] // 8, img.size[1] // 8)
     else:
         size = img.size
     return CTkImage(light_image=img, size=size)

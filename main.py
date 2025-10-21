@@ -65,7 +65,17 @@ class App:
         folder = askdirectory()
         if Path(folder).is_dir():
             self.selected_folder = Path(folder)
+        
+        # atualiza/Limpa os arquivos da tela
+        self.clear_files_display()
         MASTER.after(10, self.render_folder)
+
+    def clear_files_display(self):
+        """Remove os arquivos do MAIN_FRAME e limpa a lista de arquivos."""
+        self.list_files.clear()
+        for widget in self.MAIN_FRAME.winfo_children():
+            if isinstance(widget, CTkLabel):
+                widget.destroy()
 
     def get_list_files(self):
         """Carrega os arquivos do diretório selecionado na lista."""
@@ -83,7 +93,7 @@ class App:
         
         else:
             label.configure(image= TXT_FILE_ICON)
-            
+
     def render_folder(self):
         """Renderiza os arquivos da pasta selecionada no frame principal."""
         self.refresh_buttons()
@@ -95,7 +105,7 @@ class App:
                             compound= "left",
                             fg_color="#2f4a59",
                             corner_radius= 25,
-                            font=("Arial", 15))
+                            font=("Arial", 20))
             
             self.set_file_icon(label, file)
 
@@ -107,16 +117,25 @@ class App:
 
     def organize_folder(self):
         """Organiza os arquivos da pasta selecionada."""
-        if not self.list_files is None:
-            for file in self.list_files:
+        try:
+            if not self.list_files is None:
+                for file in self.list_files:
+                    print(file.parent)
+                    if file.is_file():
+                        #Criação de pastas
+                        new_dir = file.parent / file.suffix[1:]
+                        new_dir.mkdir(exist_ok=True)
+                        
+                        #Move o arquivo
+                        new_path = new_dir/ self.selected_folder.name 
+                        file.replace(new_path)
 
-                #Criação de pastas
-                new_dir = file.parent / Path(file.suffix[1:])
-                new_dir.mkdir(exist_ok=True)
-                
-                #Move o arquivo
-                new_path = new_dir / self.selected_folder.name 
-                file.replace(new_path)
+                        print(file)
+
+                        self.btn_organize_folder.toggle_state()
+            
+        except FileNotFoundError:
+            pass
 
     def create_zip(self):
         """Compacta a pasta selecionada em um arquivo .zip com criptografia AES."""
@@ -143,14 +162,13 @@ class App:
                     arcname = Path(base_folder) / file_path.relative_to(self.selected_folder)
                     zf.write(file_path, arcname)
 
+            self.btn_zip_folder.toggle_state()
+
     def refresh_buttons(self):
         """Atualiza o estado dos botões de ação."""
         if self.selected_folder is not None:
-            self.btn_select_folder.toggle_state()
             self.btn_organize_folder.toggle_state()
             self.btn_zip_folder.toggle_state()
-        else:
-            self.btn_select_folder.toggle_state()
         
     def run(self):
         """Inicia o loop principal da aplicação."""
