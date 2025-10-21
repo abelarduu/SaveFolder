@@ -119,7 +119,8 @@ class App:
         """Organiza os arquivos da pasta selecionada."""
         if not self.list_files is None:
             for file in self.list_files:
-                if (file.is_file() and  file.name != 'desktop.ini'):
+                if (file.is_file() 
+                    and  file.name != 'desktop.ini'):
                     #Criação de pastas
                     new_dir = file.parent / file.suffix[1:]
                     new_dir.mkdir(exist_ok=True)
@@ -134,10 +135,11 @@ class App:
     def create_zip(self):
         """Compacta a pasta selecionada em um arquivo .zip com criptografia AES."""
         secret_password = b'admin123'
+        zip_path = self.selected_folder / f'{self.selected_folder.name}.zip'
 
         # Cria o arquivo ZIP criptografado com AES e compressão LZMA
         with pyzipper.AESZipFile(
-            self.selected_folder / f'{self.selected_folder.name}.zip',
+            zip_path,
             'w',
             compression=pyzipper.ZIP_LZMA,
             encryption=pyzipper.WZ_AES
@@ -152,7 +154,10 @@ class App:
             # Percorre todos os arquivos dentro da pasta selecionada
             # e adiciona cada arquivo ao arquivo ZIP
             for file_path in self.selected_folder.rglob('*'):
-                if file_path.is_file() and  file_path.name != 'desktop.ini':
+
+                if (file_path.is_file() 
+                    and file_path.name != 'desktop.ini'
+                    and file_path != zip_path):
                     arcname = Path(base_folder) / file_path.relative_to(self.selected_folder)
                     zf.write(file_path, arcname)
 
