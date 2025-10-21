@@ -119,14 +119,13 @@ class App:
         """Organiza os arquivos da pasta selecionada."""
         if not self.list_files is None:
             for file in self.list_files:
-                print(file.parent)
                 if file.is_file():
                     #Criação de pastas
                     new_dir = file.parent / file.suffix[1:]
                     new_dir.mkdir(exist_ok=True)
                     
                     #Move o arquivo
-                    new_path = new_dir/ self.selected_folder.name 
+                    new_path = new_dir/ file.name 
                     file.replace(new_path)
 
         self.btn_organize_folder.toggle_state()
