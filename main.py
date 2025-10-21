@@ -117,26 +117,20 @@ class App:
 
     def organize_folder(self):
         """Organiza os arquivos da pasta selecionada."""
-        try:
-            if not self.list_files is None:
-                for file in self.list_files:
-                    print(file.parent)
-                    if file.is_file():
-                        #Criação de pastas
-                        new_dir = file.parent / file.suffix[1:]
-                        new_dir.mkdir(exist_ok=True)
-                        
-                        #Move o arquivo
-                        new_path = new_dir/ self.selected_folder.name 
-                        file.replace(new_path)
+        if not self.list_files is None:
+            for file in self.list_files:
+                print(file.parent)
+                if file.is_file():
+                    #Criação de pastas
+                    new_dir = file.parent / file.suffix[1:]
+                    new_dir.mkdir(exist_ok=True)
+                    
+                    #Move o arquivo
+                    new_path = new_dir/ self.selected_folder.name 
+                    file.replace(new_path)
 
-                        print(file)
-
-                        self.btn_organize_folder.toggle_state()
+        self.btn_organize_folder.toggle_state()
             
-        except FileNotFoundError:
-            pass
-
     def create_zip(self):
         """Compacta a pasta selecionada em um arquivo .zip com criptografia AES."""
         secret_password = b'admin123'
@@ -167,8 +161,8 @@ class App:
     def refresh_buttons(self):
         """Atualiza o estado dos botões de ação."""
         if self.selected_folder is not None:
-            self.btn_organize_folder.toggle_state()
-            self.btn_zip_folder.toggle_state()
+            self.btn_organize_folder.configure(state="normal")
+            self.btn_zip_folder.configure(state="normal")
         
     def run(self):
         """Inicia o loop principal da aplicação."""
