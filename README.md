@@ -14,7 +14,11 @@ Com uma interface simples e intuitiva, o **SaveFolder** foi pensado para facilit
 [![Customtkinter V.5.2.2](https://img.shields.io/badge/Customtkinter-V.5.1.2-blue?style=for-the-badge&logo=python&logoColor=white)](https://github.com/TomSchimansky/CustomTkinter)
 [![Pillow V.11.3.0](https://img.shields.io/badge/Pillow-V.10.0.1-blue?style=for-the-badge&logo=python&logoColor=white)](https://github.com/python-pillow/Pillow)
 
+### Resultado
 ### 🚧⚠️ Em Desenvolvimento ⚠️🚧
-![Interface do SaveFolder](imgs/interface.png)
+<img src="imgs/interface.png" type="image/png" alt="Interface" style= "width: 500px;"></br>
+<img src="imgs/interface2.png" type="image/png" alt="Mensagem de sucesso da organização de pastas" style= "width: 250px;">
+<img src="imgs/interface3.png" type="image/png" alt="Mensagem de sucesso da criptografia" style= "width: 250px;">
+
 
 </div>
