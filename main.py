@@ -130,6 +130,7 @@ class App:
                     file.replace(new_path)
 
         self.btn_organize_folder.toggle_state()
+        MASTER.show_message("Organizar Pasta", "A pasta foi organizada com sucesso!")
         MASTER.after(1000, self.render_folder)
             
     def create_zip(self):
@@ -162,13 +163,14 @@ class App:
                     zf.write(file_path, arcname)
 
             self.btn_zip_folder.toggle_state()
+            MASTER.show_message("Compactar Pasta", "A pasta foi compactada com criptografia AES com sucesso!")
 
     def refresh_buttons(self):
         """Atualiza o estado dos botões de ação."""
         if self.selected_folder is not None:
             self.btn_organize_folder.configure(state="normal")
             self.btn_zip_folder.configure(state="normal")
-        
+    
     def run(self):
         """Inicia o loop principal da aplicação."""
         MASTER.mainloop()

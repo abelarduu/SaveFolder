@@ -1,4 +1,5 @@
 from customtkinter import CTk, set_appearance_mode
+from tkinter import messagebox
 
 class Window(CTk):
     def __init__(self, width: int, height: int, title: str, resizable: bool):
@@ -13,10 +14,6 @@ class Window(CTk):
         self.columnconfigure(1, weight=5)
         self.rowconfigure(1, weight=5)
 
-        def set_theme(self):
-            """Alterna entre os temas da interface."""
-            pass
-
-        def show_confirmation_dialog(self):
-            """."""
-            pass
+    def show_message(self, title: str, message: str):
+        """Exibe uma caixa de diálogo de confirmação com título e mensagem."""
+        messagebox.showinfo(title, message)
