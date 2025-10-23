@@ -135,19 +135,26 @@ class App:
             
     def create_zip(self):
         """Compacta a pasta selecionada em um arquivo .zip com criptografia AES."""
-        secret_password = b'admin123'
-        zip_path = self.selected_folder / f'{self.selected_folder.name}.zip'
 
+        zip_path = self.selected_folder / f'{self.selected_folder.name}.zip'
+        zip_password = self.ask_zip_password()
+        if zip_password:
+            encryption = pyzipper.WZ_AES
+        else:
+            encryption = None
+        
         # Cria o arquivo ZIP criptografado com AES e compressão LZMA
         with pyzipper.AESZipFile(
             zip_path,
             'w',
-            compression=pyzipper.ZIP_LZMA,
-            encryption=pyzipper.WZ_AES
+            compression= pyzipper.ZIP_LZMA,
+            encryption= encryption
         ) as zf:
             
-            # Define a senha para o arquivo compactado com criptografia AES 
-            zf.setpassword(secret_password)
+            # Se Definiu uma senha foi defenida criptografia do arquivo
+            # adiciona senha com criptografia AES no arquivo compactado  
+            if zip_password:
+                zf.setpassword(zip_password)
 
             # Define o nome base da pasta dentro do arquivo ZIP
             base_folder = self.selected_folder.name
@@ -165,6 +172,18 @@ class App:
             self.btn_zip_folder.toggle_state()
             MASTER.show_message("Compactar Pasta", "A pasta foi compactada com criptografia AES com sucesso!")
 
+    def ask_zip_password(self) -> bytes | None:
+        """Obtem e retorna a senha definida em bytes se o usuário quiser proteger o .ZIP."""
+        is_password_protected = askyesno("Adicionar senha", "Deseja proteger o ZIP com senha? 🔒")
+
+        if is_password_protected:
+            # Obtem a senha e converte em numeros binarios
+            dialog = CTkInputDialog(text="Defina a senha:", title="Adicionar senha")
+            password = dialog.get_input().encode('utf-8') 
+            if password:
+                return password
+        return None
+    
     def refresh_buttons(self):
         """Atualiza o estado dos botões de ação."""
         if self.selected_folder is not None:
