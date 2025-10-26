@@ -18,8 +18,8 @@ class App:
                              columnspan=3,
                              sticky="nsew")
 
-        self.logo= CTkLabel(self.HEADER_FRAME,
-                            text="SaveFolder - Organizador de Arquivos")
+
+        self.logo= CTkLabel(self.HEADER_FRAME, image= LOGO_APP, text= None)
         self.logo.grid(row=1,
                        column=0,
                        columnspan=3,

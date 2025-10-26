@@ -21,3 +21,7 @@ ZIP_FOLDER_ICON = create_image(ASSETS_PATH / "images/zip-folder-icon.png")
 TXT_FILE_ICON = create_image(ASSETS_PATH / "images/txt_icon.png")
 DOCX_FILE_ICON = create_image(ASSETS_PATH / "images/docx_icon.png")
 PDF_FILE_ICON = create_image(ASSETS_PATH / "images/pdf_icon.png")
+
+#LOGO APP
+LOGO_APP = create_image(ASSETS_PATH / "images/logo.png")
+ICON_APP = "src/assets/images/icon.ico"

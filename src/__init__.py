@@ -13,3 +13,5 @@ MASTER= Window(width=750,
                height=500,
                title="SaveFolder - Organizador de Arquivos",
                resizable=True)
+
+MASTER.iconbitmap(ICON_APP)
