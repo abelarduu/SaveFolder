@@ -15,10 +15,13 @@ Com uma interface simples e intuitiva, o **SaveFolder** foi pensado para facilit
 [![Pillow V.11.3.0](https://img.shields.io/badge/Pillow-V.10.0.1-blue?style=for-the-badge&logo=python&logoColor=white)](https://github.com/python-pillow/Pillow)
 
 ### Resultado
-### 🚧⚠️ Em Desenvolvimento ⚠️🚧
-<img src="imgs/interface.png" type="image/png" alt="Interface" style= "width: 500px;"></br>
-<img src="imgs/interface2.png" type="image/png" alt="Mensagem de sucesso da organização de pastas" style= "width: 250px;">
-<img src="imgs/interface3.png" type="image/png" alt="Mensagem de sucesso da criptografia" style= "width: 250px;">
+
+![interface](imgs/interface.png)
+![Organizando Pasta](imgs/interface-organized.png)
+![Compactando Pasta p1](imgs/interface-zipped1.png)
+![Compactando Pasta p2](imgs/interface-zipped2.png)
+![Compactando Pasta p3](imgs/interface-zipped3.png)
+
 
 
 </div>
