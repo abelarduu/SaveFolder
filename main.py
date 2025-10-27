@@ -39,7 +39,7 @@ class App:
         
         self.btn_organize_folder = Button(self.HEADER_FRAME,
                                           'Organizar Pasta',
-                                          FOLDER_ICON,
+                                          ORGANIZE_FOLDER_ICON,
                                           command= self.organize_folder)
         self.btn_organize_folder.grid(row=2,
                                       column=1,

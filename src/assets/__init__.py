@@ -16,6 +16,7 @@ def create_image(image_path):
 #IMGs
 FOLDER_ICON = create_image(ASSETS_PATH / "images/folder-icon.png")
 ZIP_FOLDER_ICON = create_image(ASSETS_PATH / "images/zip-folder-icon.png")
+ORGANIZE_FOLDER_ICON = create_image(ASSETS_PATH / "images/organize-folder-icon.png")
 
 #Icon files
 TXT_FILE_ICON = create_image(ASSETS_PATH / "images/txt_icon.png")
