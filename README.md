@@ -22,5 +22,6 @@ Com uma interface simples e intuitiva, o **SaveFolder** foi pensado para facilit
 ![Compactando Pasta p1](imgs/interface-zipped1.png)
 ![Compactando Pasta p2](imgs/interface-zipped2.png)
 ![Compactando Pasta p3](imgs/interface-zipped3.png)
+![Compactando Pasta p4](imgs/interface-zipped4.png)
 
 </div>
