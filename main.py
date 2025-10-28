@@ -170,7 +170,10 @@ class App:
                     zf.write(file_path, arcname)
 
             self.btn_zip_folder.toggle_state()
-            MASTER.show_message("Compactar Pasta", "A pasta foi compactada com criptografia AES com sucesso!")
+            if zip_password:
+                MASTER.show_message("Compactar Pasta", "A pasta foi compactada com criptografia AES com sucesso!")
+            else:
+               MASTER.show_message("Compactar Pasta", "A pasta foi compactada com sucesso!")
 
     def ask_zip_password(self) -> bytes | None:
         """Obtem e retorna a senha definida em bytes se o usuário quiser proteger o .ZIP."""
