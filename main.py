@@ -4,7 +4,7 @@ class App:
     def __init__(self):
         """Inicializa a aplicação e define suas variaveis."""
         self.HEADER_FRAME = Frame(master=MASTER,
-                                  fg_color="#056CF2")
+                                  fg_color="#0358C9")
         self.HEADER_FRAME.grid(row=0,
                                column=0,
                                columnspan=3,
